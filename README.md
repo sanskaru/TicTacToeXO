@@ -43,7 +43,7 @@ I don't know about Git bash but it is supposed to import the project directly on
 
 ## Built With
 
-*[Android Studio](https://developer.android.com/studio?hl=en)
+* [Android Studio](https://developer.android.com/studio?hl=en)
 
 
 ## Acknowledgments
