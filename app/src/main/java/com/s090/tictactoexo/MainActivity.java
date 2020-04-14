@@ -17,7 +17,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     int playerState=0; // at present at two player local mode. 0 is red and 1 is yellow.
     int[] boardState={-1,-1,-1,-1,-1,-1,-1,-1,-1}; // -1 means unplayed, else stores playerState, denoting which player tapped which cell
-    int playCounter = 0; // denotes no grid has been tapped yet
+    int playCounter = 0; // denotes number of tapped or played grids56t
     public void myDialog(String title, String msg) // method to call dialog box
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
