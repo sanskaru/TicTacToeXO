@@ -4,7 +4,7 @@ Just another TicTacToe app
 
 ## Changelog
 
-* Version 1.0.1_alpha (April 17th, 2020): Menu added, new game mode options added. The game modes are in progress as of now. Updated graphics. Added new icon, bug fixed: Nothing happening on game draw
+* Version 1.0.1_alpha (April 17th, 2020): Menu added, new game mode options added. The game modes are in progress as of now. Updated graphics, courtesy [Suraj Singh](mailto:marvarik007@gmail.com?subject=[GitHub]%20TicTacToeXO). Added new icon, bug fixed: Nothing happening on game draw.
 * Version 1.0: Initial Commit
 
 ## Getting Started
@@ -49,6 +49,14 @@ I don't know about Git bash but it is supposed to import the project directly on
 ## Built With
 
 * [Android Studio](https://developer.android.com/studio?hl=en)
+
+## Contributors
+
+* [Suraj Singh](mailto:marvarik007@gmail.com)
+* [Somrita Mukherjee](github.com/SomritaM)
+* [Shashi Shaw](mailto:shashikshaw512@gmail.com)
+* [Rounak Saha](github.com/kevinknight09)
+* The whole of Herbivores fam, BAKM fam and OT fam for their constant support.
 
 
 ## Acknowledgments
