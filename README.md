@@ -2,6 +2,11 @@
 
 Just another TicTacToe app
 
+## Changelog
+
+* Version 1.0.1_alpha (April 17th, 2020): Menu added, new game mode options added. The game modes are in progress as of now. Updated graphics. Added new icon, bug fixed: Nothing happening on game draw
+* Version 1.0: Initial Commit
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
