@@ -29,7 +29,7 @@ You can download the ZIP directly from the above link or from the "Clone or Down
 Not a pro in Git bash, I upload my files manually
 Sry
 ```
-* Method 3: Download the APK file from [here](https://github.com/sanskaru/TicTacToeXO/raw/master/tictacxo_first.apk) to run it on your android device.
+* Method 3: Download the APK file from [here](https://github.com/sanskaru/TicTacToeXO/raw/master/TicTacXO%201.0.1_alpha.apk) to run it on your android device.
 ```
 Note: You should have "Allow Installation from Unknown Sources" enabled under your device's security settings
 ```
