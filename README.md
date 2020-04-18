@@ -2,6 +2,11 @@
 
 Just another TicTacToe app
 
+## Changelog
+
+* Version 1.0.1_alpha (April 17th, 2020): Menu added, new game mode options added. The game modes are in progress as of now. Updated graphics, courtesy [Suraj Singh](mailto:marvarik007@gmail.com?subject=[GitHub]%20TicTacToeXO). Added new icon, bug fixed: Nothing happening on game draw.
+* Version 1.0: Initial Commit
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
@@ -24,7 +29,7 @@ You can download the ZIP directly from the above link or from the "Clone or Down
 Not a pro in Git bash, I upload my files manually
 Sry
 ```
-* Method 3: Download the APK file from [here](https://github.com/sanskaru/TicTacToeXO/raw/master/tictacxo_first.apk) to run it on your android device.
+* Method 3: Download the APK file from [here](https://github.com/sanskaru/TicTacToeXO/raw/master/TicTacXO%201.0.1_alpha.apk) to run it on your android device.
 ```
 Note: You should have "Allow Installation from Unknown Sources" enabled under your device's security settings
 ```
@@ -44,6 +49,14 @@ I don't know about Git bash but it is supposed to import the project directly on
 ## Built With
 
 * [Android Studio](https://developer.android.com/studio?hl=en)
+
+## Contributors
+
+* [Suraj Singh](mailto:marvarik007@gmail.com) : Graphics
+* [Somrita Mukherjee](github.com/SomritaM) : Testing and Deployment
+* [Shashi Shaw](mailto:shashikshaw512@gmail.com) : Testing and Deployment
+* [Rounak Saha](github.com/kevinknight09) : Testing and Deployment
+* The whole of Herbivores fam, BAKM fam and OT fam: For their constant support.
 
 
 ## Acknowledgments
