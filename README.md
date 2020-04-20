@@ -4,12 +4,14 @@ Just another TicTacToe app
 
 ## Changelog
 
-* Version 1.0.1_alpha (April 17th, 2020): Menu added, new game mode options added. The game modes are in progress as of now. Updated graphics, courtesy [Suraj Singh](mailto:marvarik007@gmail.com?subject=[GitHub]%20TicTacToeXO). Added new icon, bug fixed: Nothing happening on game draw.
+* Version 1.0.2_alpha (April 20th, 2020): Single player vs Computer mode is now in progress. Three Player local mode is now live.
+
+* Version 1.0.1_alpha (April 17th, 2020): Menu added, new game mode options added. The game modes are in progress as of now. Updated graphics and icon, courtesy [Suraj Singh](mailto:marvarik007@gmail.com?subject=[GitHub]%20TicTacToeXO). Bug fixed: Nothing happening on game draw.
 * Version 1.0: Initial Commit
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+These instructions will get you a copy of the project up and running on your local machine for development, playing and testing purposes.
 
 ### Prerequisites
 
