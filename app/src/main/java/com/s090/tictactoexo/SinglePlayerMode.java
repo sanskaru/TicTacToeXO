@@ -15,8 +15,6 @@ public class SinglePlayerMode extends AppCompatActivity {
     int playerState = 0; // at present at two player local mode. 0 is x and 1 is o.
     int[] boardState = {-1, -1, -1, -1, -1, -1, -1, -1, -1}; // -1 means unplayed, else stores playerState, denoting which player tapped which cell
     int playCounter = 0, winnerwinner = 0; // denotes number of tapped or played grids, winnerwinner denotes somebody has won
-
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void drop_in(View view) // method invoked on tapping any grid cell
     {
         ImageView counter = (ImageView) view;
@@ -46,18 +44,24 @@ public class SinglePlayerMode extends AppCompatActivity {
                 public void onClick(DialogInterface dialog, int which) {
                     switch(which){
                         case DialogInterface.BUTTON_POSITIVE:
-                            // User clicked the Yes button
-                            Toast.makeText(SinglePlayerMode.this,"Hard Mode Selected",Toast.LENGTH_SHORT).show();
+                        {
+                            Toast.makeText(SinglePlayerMode.this, "Hard Mode Selected", Toast.LENGTH_SHORT).show();
                             break;
-
+                        }
                         case DialogInterface.BUTTON_NEGATIVE:
-                            // User clicked the No button
+                        {
                             Toast.makeText(SinglePlayerMode.this,"Easy Mode Selected",Toast.LENGTH_SHORT).show();
                             break;
+                        }
                     }
                 }
             };
-        builder.setCancelable(false).setTitle("Select Game Mode").setMessage("Select Game Difficulty level").setPositiveButton("Hard", dialogClickListener).setNegativeButton("Easy",dialogClickListener);
+        builder
+                .setCancelable(false)
+                .setTitle("Select Game Mode")
+                .setMessage("Select Game Difficulty level")
+                .setPositiveButton("Hard", dialogClickListener)
+                .setNegativeButton("Easy",dialogClickListener);
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }

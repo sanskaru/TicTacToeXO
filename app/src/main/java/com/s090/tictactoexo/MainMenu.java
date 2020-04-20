@@ -16,17 +16,32 @@ public class MainMenu extends AppCompatActivity {
         numberPicker.setMinValue(0);
         String[] pickerVal={"Single Player Mode","2 Player Mode","3 Player Mode","4 Player Mode"};
         numberPicker.setDisplayedValues(pickerVal);
-        if(numberPicker.getValue()==0)
-        {
-            Intent intent=new Intent(MainMenu.this, SinglePlayerMode.class);
-            startActivity(intent);
+        int ch=numberPicker.getValue();
+        switch (ch) {
+            case 0:
+            {
+                Intent intent = new Intent(MainMenu.this, SinglePlayerMode.class);
+                startActivity(intent);
+                break;
+            }
+            case 1:
+            {
+                Intent intent = new Intent(MainMenu.this, MainActivity.class);
+                startActivity(intent);
+                break;
+            }
+            case 2:
+            {
+                Intent intent = new Intent(MainMenu.this, ThreePlayerLocal.class);
+                startActivity(intent);
+                break;
+            }
+            case 3:
+            {
+                Toast.makeText(MainMenu.this, "On the way my friend.", Toast.LENGTH_SHORT).show();
+                break;
+            }
         }
-        else if(numberPicker.getValue()==1)
-        {
-            Intent intent=new Intent(MainMenu.this, MainActivity.class);
-            startActivity(intent);
-        }
-        else Toast.makeText(MainMenu.this,"Work in progress, Coming soon.",Toast.LENGTH_SHORT).show();
     }
 
     @Override

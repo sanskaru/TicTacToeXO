@@ -5,11 +5,11 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/iconmain_1"
-        android:roundIcon="@drawable/iconmain_2"
         android:label="@string/app_name"
+        android:roundIcon="@drawable/iconmain_2"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SinglePlayerMode"></activity>
+        <activity android:name=".ThreePlayerLocal"></activity>
         <activity
             android:name=".MainMenu"
             android:label="@string/app_name">
@@ -19,6 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SinglePlayerMode" />
         <activity android:name=".MainActivity" />
     </application>
 

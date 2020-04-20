@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void drop_in(View view) // method invoked on tapping any grid cell
     {
         ImageView counter=(ImageView) view;
@@ -104,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("Info","Board full.");
                 myDialog("It's a Tie!", "The board is full. Please play again.");
             }
-
     }
 
     @Override
