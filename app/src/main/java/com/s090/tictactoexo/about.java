@@ -18,6 +18,9 @@ public class about extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
+        TextView title = (TextView) findViewById(R.id.title);
+        String tileString=getString(R.string.app_name) + " " + getString(R.string.app_version);
+        title.setText(tileString);
         TextView lenkPlox = (TextView) findViewById(R.id.textView4);
         Spanned text;
         text = Html.fromHtml("You can contact me on " +
