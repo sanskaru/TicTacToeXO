@@ -7,14 +7,93 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class SinglePlayerMode extends AppCompatActivity {
     int playerState = 0; // at present at two player local mode. 0 is x and 1 is o.
     int[] boardState = {-1, -1, -1, -1, -1, -1, -1, -1, -1}; // -1 means unplayed, else stores playerState, denoting which player tapped which cell
     int playCounter = 0, winnerwinner = 0; // denotes number of tapped or played grids, winnerwinner denotes somebody has won
+    public int minimax(int[] boardState)
+    {
+
+        return 0;
+    }
+    public void myDialog(String title, String msg) // method to call dialog box
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(SinglePlayerMode.this);
+        builder.setTitle(title).setMessage(msg).setCancelable(false);
+        builder.setPositiveButton("Play Again", new DialogInterface.OnClickListener() { // attaches an onClickListener to button
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                finish();
+                startActivity(getIntent());
+            }
+        });
+        // create and show the alert dialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+    public int endStateChecker(int[] boardState) {
+        //all possible winning positions below
+        if (boardState[0] == boardState[1] && boardState[1] == boardState[2] && boardState[0] != -1) {
+            Log.i("Info", "Player " + boardState[0] + " has won.");
+            winnerwinner = boardState[0];
+        } else if (boardState[0] == boardState[3] && boardState[3] == boardState[6] && boardState[0] != -1) {
+            Log.i("Info", "Player " + boardState[0] + " has won.");
+            winnerwinner = boardState[0];
+        } else if (boardState[0] == boardState[4] && boardState[4] == boardState[8] && boardState[0] != -1) {
+            Log.i("Info", "Player " + boardState[0] + " has won.");
+
+            winnerwinner = boardState[0];
+        } else if (boardState[1] == boardState[4] && boardState[4] == boardState[7] && boardState[1] != -1) {
+            Log.i("Info", "Player " + boardState[1] + " has won.");
+
+            winnerwinner = boardState[1];
+        } else if (boardState[2] == boardState[5] && boardState[5] == boardState[8] && boardState[2] != -1) {
+            Log.i("Info", "Player " + boardState[2] + " has won.");
+
+            winnerwinner = boardState[2];
+        } else if (boardState[2] == boardState[4] && boardState[4] == boardState[6] && boardState[2] != -1) {
+            Log.i("Info", "Player " + boardState[2] + " has won.");
+
+            winnerwinner = boardState[2];
+        } else if (boardState[3] == boardState[4] && boardState[4] == boardState[5] && boardState[3] != -1) {
+            Log.i("Info", "Player " + boardState[3] + " has won.");
+
+            winnerwinner = boardState[3];
+        } else if (boardState[6] == boardState[7] && boardState[7] == boardState[8] && boardState[6] != -1) {
+            Log.i("Info", "Player " + boardState[6] + " has won.");
+
+            winnerwinner = boardState[6];
+        }
+        if (playCounter == 9 && winnerwinner == 0) // if all grids have been tapped and nobody won, i.e. it's a draw or a tie
+        {
+            Log.i("Info", "Board full.");
+
+        }
+        return winnerwinner;
+    }
+    public void computerLogicHard()
+    {
+        int winnerstate=-1, newWinner;
+        int[] copyBoardState=boardState;
+        for(int i=0;i<9;i++)
+        {
+            if(copyBoardState[i]==-1)
+            {
+                copyBoardState[i]=playerState;
+                newWinner=minimax(copyBoardState);
+                if(newWinner>winnerstate) winnerstate=newWinner;
+
+            }
+        }
+    }
+
     public void drop_in(View view) // method invoked on tapping any grid cell
     {
         ImageView counter = (ImageView) view;
@@ -34,6 +113,7 @@ public class SinglePlayerMode extends AppCompatActivity {
             boardState[cellState] = playerState; // changing grid number to record which player tapped so that nobody can change on tapping again
         }
     }
+        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
         @Override
         protected void onCreate (Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -64,5 +144,39 @@ public class SinglePlayerMode extends AppCompatActivity {
                 .setNegativeButton("Easy",dialogClickListener);
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+            AlertDialog.Builder initDialogBuilder=new AlertDialog.Builder(SinglePlayerMode.this);
+            DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    switch (i)
+                    {
+                        case DialogInterface.BUTTON_POSITIVE:
+                        {
+                            playerState=1;
+                            break;
+                        }
+                        case DialogInterface.BUTTON_NEGATIVE:
+                        {
+                            playerState=0;
+                            break;
+                        }
+                    }
+                }
+            };
+            initDialogBuilder.setCancelable(false)
+                    .setTitle("Select your counter")
+                    .setPositiveButtonIcon(getDrawable(R.drawable.o))
+                    .setPositiveButton("",listener)
+                    .setNegativeButtonIcon(getDrawable(R.drawable.x))
+                    .setNegativeButton("",listener)
+                    .setMessage("Please select your counter.");
+            AlertDialog initDialog = initDialogBuilder.create();
+            initDialog.show();
+            Button btnPositive = initDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+            Button btnNegative = initDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) btnPositive.getLayoutParams();
+            layoutParams.weight = 1;
+            btnPositive.setLayoutParams(layoutParams);
+            btnNegative.setLayoutParams(layoutParams);
     }
 }

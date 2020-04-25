@@ -11,11 +11,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    int playerState=0; // at present at two player local mode. 0 is x and 1 is o.
+    int playerState=0; // at present at two player local mode. 1 is x and 0 is o.
     int[] boardState={-1,-1,-1,-1,-1,-1,-1,-1,-1}; // -1 means unplayed, else stores playerState, denoting which player tapped which cell
     int playCounter = 0, winnerwinner=0; // denotes number of tapped or played grids, winnerwinner denotes somebody has won
     public void myDialog(String title, String msg) // method to call dialog box
@@ -105,9 +107,61 @@ public class MainActivity extends AppCompatActivity {
             }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        AlertDialog.Builder initDialogBuilder=new AlertDialog.Builder(MainActivity.this);
+        DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                switch (i)
+                {
+                    case DialogInterface.BUTTON_POSITIVE:
+                    {
+                        playerState=1;
+                        break;
+                    }
+                    case DialogInterface.BUTTON_NEGATIVE:
+                    {
+                        playerState=0;
+                        break;
+                    }
+                }
+            }
+        };
+        initDialogBuilder
+                .setTitle("Select your counter")
+                .setPositiveButtonIcon(getDrawable(R.drawable.o))
+                .setPositiveButton("",listener)
+                .setNegativeButtonIcon(getDrawable(R.drawable.x))
+                .setNegativeButton("",listener)
+                .setMessage("Please select your counter.");
+        AlertDialog initDialog = initDialogBuilder.create();
+        initDialog.show();
+        Button btnPositive = initDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+        Button btnNegative = initDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) btnPositive.getLayoutParams();
+        layoutParams.weight = 1;
+        btnPositive.setLayoutParams(layoutParams);
+        btnNegative.setLayoutParams(layoutParams);
+        getSupportActionBar().setTitle("Two-Player local mode");
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        initDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                Intent i = new Intent();
+                setResult(0, i);
+                finish();
+            }
+        });
+    }
+    @Override
+    public boolean onSupportNavigateUp() { // the method to be called when the back button is pressed
+        onBackPressed();
+        return true;
     }
 }

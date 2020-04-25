@@ -43,7 +43,10 @@ public class MainMenu extends AppCompatActivity {
             }
         }
     }
-
+    public void changeToAbout(View view) {
+        Intent intent = new Intent(MainMenu.this,about.class);
+        startActivity(intent);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
