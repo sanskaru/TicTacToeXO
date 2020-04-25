@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -137,7 +138,6 @@ public class SinglePlayerMode extends AppCompatActivity {
                 }
             };
         builder
-                .setCancelable(false)
                 .setTitle("Select Game Mode")
                 .setMessage("Select Game Difficulty level")
                 .setPositiveButton("Hard", dialogClickListener)
@@ -163,7 +163,7 @@ public class SinglePlayerMode extends AppCompatActivity {
                     }
                 }
             };
-            initDialogBuilder.setCancelable(false)
+            initDialogBuilder
                     .setTitle("Select your counter")
                     .setPositiveButtonIcon(getDrawable(R.drawable.o))
                     .setPositiveButton("",listener)
@@ -178,5 +178,22 @@ public class SinglePlayerMode extends AppCompatActivity {
             layoutParams.weight = 1;
             btnPositive.setLayoutParams(layoutParams);
             btnNegative.setLayoutParams(layoutParams);
-    }
+            initDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+
+                @Override
+                public void onCancel(DialogInterface dialog) {
+                    Intent i = new Intent();
+                    setResult(0, i);
+                    finish();
+                }
+            });
+            alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                @Override
+                public void onCancel(DialogInterface dialog) {
+                    Intent i = new Intent();
+                    setResult(0, i);
+                    finish();
+                }
+            });
+        }
 }
