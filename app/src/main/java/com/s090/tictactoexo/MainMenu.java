@@ -1,8 +1,10 @@
 package com.s090.tictactoexo;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.NumberPicker;
@@ -47,15 +49,18 @@ public class MainMenu extends AppCompatActivity {
         Intent intent = new Intent(MainMenu.this,about.class);
         startActivity(intent);
     }
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
-
         NumberPicker numberPicker=(NumberPicker) findViewById(R.id.menuSelector);
+        numberPicker.setAlpha(0f);
         numberPicker.setMaxValue(3);
         numberPicker.setMinValue(0);
         String[] pickerVal={"Single Player Mode","2 Player Mode","3 Player Mode","4 Player Mode"};
         numberPicker.setDisplayedValues(pickerVal);
+        numberPicker.setTranslationZ(-2000f);
+        numberPicker.animate().alpha(1f).translationZBy(2000f).setDuration(1500);
     }
 }

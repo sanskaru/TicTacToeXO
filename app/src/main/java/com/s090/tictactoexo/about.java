@@ -10,6 +10,7 @@ import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class about extends AppCompatActivity {
@@ -32,6 +33,10 @@ public class about extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+        LinearLayout about_info=(LinearLayout) findViewById(R.id.about_info);
+        about_info.setTranslationY(1500f);
+        about_info.setAlpha(0f);
+        about_info.animate().alpha(1f).translationYBy(-1500f).setDuration(1200);
     }
     @Override
     public boolean onSupportNavigateUp() { // the method to be called when the back button is pressed

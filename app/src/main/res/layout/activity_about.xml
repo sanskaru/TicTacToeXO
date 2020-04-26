@@ -7,6 +7,7 @@
     tools:context=".about">
 
     <LinearLayout
+        android:id="@+id/about_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:foregroundGravity="center_horizontal"
@@ -18,49 +19,59 @@
 
         <TextView
             android:id="@+id/title"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="@string/app_name"
-            android:textSize="35sp"
-            tools:layout_editor_absoluteX="181dp"
-            tools:layout_editor_absoluteY="208dp" />
+            android:textSize="40sp" />
 
         <TextView
             android:id="@+id/about1"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Developed by 090" />
+            android:gravity="center"
+            android:text="Developed by 090"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/textView3"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Graphics by Suraj" />
+            android:gravity="center"
+            android:text="Graphics by Suraj Singh"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/textView5"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Testers: Somrita Mukherjee, Shashi Shaw, Rounak Saha, Ritankar Sarkar, Lohit Sarkar, Avijit Saha, and the whole of Herbivores and KolkOTians fam." />
+            android:gravity="center"
+            android:text="Testers: Somrita Mukherjee, Shashi Shaw, Rounak Saha, Ritankar Sarkar, Lohit Sarkar, Avijit Saha, and the whole of Herbivores, BAKM and KolkOTians fam."
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/mail_me"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="@string/email_me"
-           />
+            android:textSize="20sp" />
+
         <TextView
             android:id="@+id/github"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="@string/git_hub"
-            />
+            android:textSize="20sp" />
+
         <TextView
             android:id="@+id/tweet"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="@string/twit"
-            />
+            android:textSize="20sp" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
