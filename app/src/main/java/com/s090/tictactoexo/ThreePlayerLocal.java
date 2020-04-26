@@ -39,6 +39,7 @@ public class ThreePlayerLocal extends AppCompatActivity {
     public void drop_in(View view) // method invoked on tapping any grid cell
     {
         ImageView counter = (ImageView) view;
+        ImageView playaaah = (ImageView) findViewById(R.id.playaaah);
         int cellState = Integer.parseInt(counter.getTag().toString()); // getting the associated tags or basically cell number
         if (boardState[cellState] == -1)
         {
@@ -47,12 +48,14 @@ public class ThreePlayerLocal extends AppCompatActivity {
                 boardState[cellState]=playerState;
                 playerState++;
                 counter.setImageResource(R.drawable.x);
-                playCounter++; // updating number of played grids
+                playCounter++;
+                playaaah.setImageResource(R.drawable.o);// updating number of played grids
             } else if (playerState==1){
                 boardState[cellState]=playerState;
                 playerState++;
                 counter.setImageResource(R.drawable.o);
                 playCounter++;
+                playaaah.setImageResource(R.drawable.sq);
             }
             else
             {
@@ -60,6 +63,7 @@ public class ThreePlayerLocal extends AppCompatActivity {
                 counter.setImageResource(R.drawable.sq);
                 playCounter++;
                 playerState=0;
+                playaaah.setImageResource(R.drawable.x);
             }
             counter.animate().translationYBy(1000f).rotation(360f).setDuration(300); // drop-in animation
         }
@@ -135,25 +139,29 @@ public class ThreePlayerLocal extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_three_player_local);
-            AlertDialog.Builder initDialogBuilder=new AlertDialog.Builder(ThreePlayerLocal.this);
-            DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    switch (i)
-                    {
-                        case DialogInterface.BUTTON_POSITIVE:
+        final ImageView playaaah = (ImageView) findViewById(R.id.playaaah);
+        AlertDialog.Builder initDialogBuilder=new AlertDialog.Builder(ThreePlayerLocal.this);
+        DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                switch (i)
+                {
+                    case DialogInterface.BUTTON_POSITIVE:
                         {
                             playerState=1;
+                            playaaah.setImageResource(R.drawable.o);
                             break;
                         }
                         case DialogInterface.BUTTON_NEGATIVE:
                         {
                             playerState=0;
+                            playaaah.setImageResource(R.drawable.x);
                             break;
                         }
                         case DialogInterface.BUTTON_NEUTRAL:
                         {
                             playerState=2;
+                            playaaah.setImageResource(R.drawable.sq);
                             break;
                         }
                     }

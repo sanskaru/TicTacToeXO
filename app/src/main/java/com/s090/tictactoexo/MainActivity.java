@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     int playerState=0; // at present at two player local mode. 1 is x and 0 is o.
     int[] boardState={-1,-1,-1,-1,-1,-1,-1,-1,-1}; // -1 means unplayed, else stores playerState, denoting which player tapped which cell
     int playCounter = 0, winnerwinner=0; // denotes number of tapped or played grids, winnerwinner denotes somebody has won
+
     public void myDialog(String title, String msg) // method to call dialog box
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
@@ -38,17 +39,22 @@ public class MainActivity extends AppCompatActivity {
     public void drop_in(View view) // method invoked on tapping any grid cell
     {
         ImageView counter=(ImageView) view;
+        ImageView playaaah = (ImageView) findViewById(R.id.playaaah);
         int cellState = Integer.parseInt(counter.getTag().toString()); // getting the associated tags or basically cell number
         if (boardState[cellState]==-1) {
             counter.setTranslationY(-1000f);
             if (playerState == 0) {
+
                 playerState = 1;
                 counter.setImageResource(R.drawable.x);
-                playCounter++; // updaating number of played grids
+                playCounter++;
+                playaaah.setImageResource(R.drawable.o); // updating number of played grids
             } else {
                 playerState = 0;
+
                 counter.setImageResource(R.drawable.o);
                 playCounter++;
+                playaaah.setImageResource(R.drawable.x);
             }
             counter.animate().translationYBy(1000f).rotation(360f).setDuration(300); // drop-in animation
             boardState[cellState] = playerState; // changing grid number to record which player tapped so that nobody can change on tapping again
@@ -112,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        final ImageView playaaah = (ImageView) findViewById(R.id.playaaah);
         AlertDialog.Builder initDialogBuilder=new AlertDialog.Builder(MainActivity.this);
         DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
             @Override
@@ -120,11 +127,13 @@ public class MainActivity extends AppCompatActivity {
                 {
                     case DialogInterface.BUTTON_POSITIVE:
                     {
+                        playaaah.setImageResource(R.drawable.o);
                         playerState=1;
                         break;
                     }
                     case DialogInterface.BUTTON_NEGATIVE:
                     {
+                        playaaah.setImageResource(R.drawable.x);
                         playerState=0;
                         break;
                     }
@@ -158,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+
     }
     @Override
     public boolean onSupportNavigateUp() { // the method to be called when the back button is pressed
