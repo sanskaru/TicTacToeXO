@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/app_name"
-            android:textSize="30sp"
+            android:textSize="35sp"
             tools:layout_editor_absoluteX="181dp"
             tools:layout_editor_absoluteY="208dp" />
 
@@ -44,10 +44,23 @@
             android:text="Testers: Somrita Mukherjee, Shashi Shaw, Rounak Saha, Ritankar Sarkar, Lohit Sarkar, Avijit Saha, and the whole of Herbivores and KolkOTians fam." />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/mail_me"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="@string/email_me"
+           />
+        <TextView
+            android:id="@+id/github"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/git_hub"
+            />
+        <TextView
+            android:id="@+id/tweet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/twit"
+            />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

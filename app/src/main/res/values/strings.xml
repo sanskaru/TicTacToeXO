@@ -2,4 +2,7 @@
     <string name="app_name">TicTacXO α
     </string>
     <string name="app_version">v1.0.3</string>
+    <string name="email_me">You can email me <a href="mailto:sannvict090@gmail.com">here.</a></string>
+    <string name="git_hub">Or follow me on <a href="http://www.github.com/sanskaru">GitHub.</a></string>
+    <string name="twit">I am also on <a href="http://www.twitter.com/sannvict090">Twitter.</a></string>
 </resources>

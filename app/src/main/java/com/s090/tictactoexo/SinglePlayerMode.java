@@ -19,11 +19,12 @@ public class SinglePlayerMode extends AppCompatActivity {
     int playerState = 0; // at present at two player local mode. 0 is x and 1 is o.
     int[] boardState = {-1, -1, -1, -1, -1, -1, -1, -1, -1}; // -1 means unplayed, else stores playerState, denoting which player tapped which cell
     int playCounter = 0, winnerwinner = 0; // denotes number of tapped or played grids, winnerwinner denotes somebody has won
-    public int minimax(int[] boardState)
-    {
+
+    public int minimax(int[] boardState) {
 
         return 0;
     }
+
     public void myDialog(String title, String msg) // method to call dialog box
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(SinglePlayerMode.this);
@@ -39,6 +40,7 @@ public class SinglePlayerMode extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
+
     public int endStateChecker(int[] boardState) {
         //all possible winning positions below
         if (boardState[0] == boardState[1] && boardState[1] == boardState[2] && boardState[0] != -1) {
@@ -79,17 +81,15 @@ public class SinglePlayerMode extends AppCompatActivity {
         }
         return winnerwinner;
     }
-    public void computerLogicHard()
-    {
-        int winnerstate=-1, newWinner;
-        int[] copyBoardState=boardState;
-        for(int i=0;i<9;i++)
-        {
-            if(copyBoardState[i]==-1)
-            {
-                copyBoardState[i]=playerState;
-                newWinner=minimax(copyBoardState);
-                if(newWinner>winnerstate) winnerstate=newWinner;
+
+    public void computerLogicHard() {
+        int winnerstate = -1, newWinner;
+        int[] copyBoardState = boardState;
+        for (int i = 0; i < 9; i++) {
+            if (copyBoardState[i] == -1) {
+                copyBoardState[i] = playerState;
+                newWinner = minimax(copyBoardState);
+                if (newWinner > winnerstate) winnerstate = newWinner;
 
             }
         }
@@ -114,86 +114,93 @@ public class SinglePlayerMode extends AppCompatActivity {
             boardState[cellState] = playerState; // changing grid number to record which player tapped so that nobody can change on tapping again
         }
     }
-        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-        @Override
-        protected void onCreate (Bundle savedInstanceState){
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_player_mode);
         AlertDialog.Builder builder = new AlertDialog.Builder(SinglePlayerMode.this);
-            DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    switch(which){
-                        case DialogInterface.BUTTON_POSITIVE:
-                        {
-                            Toast.makeText(SinglePlayerMode.this, "Hard Mode Selected", Toast.LENGTH_SHORT).show();
-                            break;
-                        }
-                        case DialogInterface.BUTTON_NEGATIVE:
-                        {
-                            Toast.makeText(SinglePlayerMode.this,"Easy Mode Selected",Toast.LENGTH_SHORT).show();
-                            break;
-                        }
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case DialogInterface.BUTTON_POSITIVE: {
+                        Toast.makeText(SinglePlayerMode.this, "Hard Mode Selected", Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+                    case DialogInterface.BUTTON_NEGATIVE: {
+                        Toast.makeText(SinglePlayerMode.this, "Easy Mode Selected", Toast.LENGTH_SHORT).show();
+                        break;
                     }
                 }
-            };
+            }
+        };
         builder
                 .setTitle("Select Game Mode")
                 .setMessage("Select Game Difficulty level")
                 .setPositiveButton("Hard", dialogClickListener)
-                .setNegativeButton("Easy",dialogClickListener);
+                .setNegativeButton("Easy", dialogClickListener);
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
-            AlertDialog.Builder initDialogBuilder=new AlertDialog.Builder(SinglePlayerMode.this);
-            DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    switch (i)
-                    {
-                        case DialogInterface.BUTTON_POSITIVE:
-                        {
-                            playerState=1;
-                            break;
-                        }
-                        case DialogInterface.BUTTON_NEGATIVE:
-                        {
-                            playerState=0;
-                            break;
-                        }
+        AlertDialog.Builder initDialogBuilder = new AlertDialog.Builder(SinglePlayerMode.this);
+        DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                switch (i) {
+                    case DialogInterface.BUTTON_POSITIVE: {
+                        playerState = 1;
+                        break;
+                    }
+                    case DialogInterface.BUTTON_NEGATIVE: {
+                        playerState = 0;
+                        break;
                     }
                 }
-            };
-            initDialogBuilder
-                    .setTitle("Select your counter")
-                    .setPositiveButtonIcon(getDrawable(R.drawable.o))
-                    .setPositiveButton("",listener)
-                    .setNegativeButtonIcon(getDrawable(R.drawable.x))
-                    .setNegativeButton("",listener)
-                    .setMessage("Please select your counter.");
-            AlertDialog initDialog = initDialogBuilder.create();
-            initDialog.show();
-            Button btnPositive = initDialog.getButton(AlertDialog.BUTTON_POSITIVE);
-            Button btnNegative = initDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
-            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) btnPositive.getLayoutParams();
-            layoutParams.weight = 1;
-            btnPositive.setLayoutParams(layoutParams);
-            btnNegative.setLayoutParams(layoutParams);
-            initDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            }
+        };
+        initDialogBuilder
+                .setTitle("Select your counter")
+                .setPositiveButtonIcon(getDrawable(R.drawable.o))
+                .setPositiveButton("", listener)
+                .setNegativeButtonIcon(getDrawable(R.drawable.x))
+                .setNegativeButton("", listener)
+                .setMessage("Please select your counter.");
+        AlertDialog initDialog = initDialogBuilder.create();
+        initDialog.show();
+        Button btnPositive = initDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+        Button btnNegative = initDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) btnPositive.getLayoutParams();
+        layoutParams.weight = 1;
+        btnPositive.setLayoutParams(layoutParams);
+        btnNegative.setLayoutParams(layoutParams);
+        initDialog.setOnCancelListener(new DialogInterface.OnCancelListener() { // what to do if dialog box is cancelled
 
-                @Override
-                public void onCancel(DialogInterface dialog) {
-                    Intent i = new Intent();
-                    setResult(0, i);
-                    finish();
-                }
-            });
-            alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                @Override
-                public void onCancel(DialogInterface dialog) {
-                    Intent i = new Intent();
-                    setResult(0, i);
-                    finish();
-                }
-            });
-        }
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                Intent i = new Intent();
+                setResult(0, i);
+                finish();
+            }
+        });
+        alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                Intent i = new Intent();
+                setResult(0, i);
+                finish();
+            }
+        });
+        getSupportActionBar().setTitle("Single Player mode");
+        getSupportActionBar().setDisplayShowHomeEnabled(true); // enabling back button function
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); // enabling back functionality
+        getSupportActionBar().setHomeButtonEnabled(true);
+
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() { // the method to be called when the back button is pressed
+        onBackPressed();
+        return true;
+    }
 }
