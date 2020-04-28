@@ -4,6 +4,7 @@ Just another TicTacToe app
 
 ## Changelog
 
+* Version 1.0.4_alpha(April 28th, 2020): Four-player Mode added.
 * Version 1.0.3_alpha(April 26th, 2020): Single Player mode coming soon. Redesigned UI, various bug fixes.
 * Version 1.0.2_alpha (April 20th, 2020): Single player vs Computer mode is now in progress. Three Player local mode is now live.
 
