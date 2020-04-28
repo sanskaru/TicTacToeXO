@@ -40,7 +40,8 @@ public class MainMenu extends AppCompatActivity {
             }
             case 3:
             {
-                Toast.makeText(MainMenu.this, "On the way my friend.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainMenu.this,FourPlayerMode.class);
+                startActivity(intent);
                 break;
             }
         }

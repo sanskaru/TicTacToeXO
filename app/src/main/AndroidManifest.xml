@@ -9,7 +9,8 @@
         android:roundIcon="@drawable/iconmain_2"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".about"></activity>
+        <activity android:name=".FourPlayerMode"></activity>
+        <activity android:name=".about" />
         <activity android:name=".ThreePlayerLocal" />
         <activity
             android:name=".MainMenu"
