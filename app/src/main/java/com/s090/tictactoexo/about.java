@@ -27,7 +27,7 @@ public class about extends AppCompatActivity {
         TextView github =(TextView) findViewById(R.id.github);
         TextView mail_me = (TextView) findViewById(R.id.mail_me);
         TextView tweeter = (TextView) findViewById(R.id.tweet);
-        tweeter.setMovementMethod(LinkMovementMethod.getInstance());
+        tweeter.setMovementMethod(LinkMovementMethod.getInstance()); // to set links
         mail_me.setMovementMethod(LinkMovementMethod.getInstance());
         github.setMovementMethod(LinkMovementMethod.getInstance());
         getSupportActionBar().setDisplayShowHomeEnabled(true);
