@@ -1,6 +1,6 @@
 # TicTacToeXO
 
-Just another TicTacToe app
+Just another TicTacToe app, by just another noob wannabe developer.
 
 ## Changelog
 
