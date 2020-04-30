@@ -8,39 +8,37 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:orientation="horizontal"
-            android:layout_weight="10">
+            >
 
             <Button
                 android:layout_width="40dp"
-                android:layout_height="62dp"
+                android:layout_height="40dp"
                 android:background="@drawable/tri"
                 android:id="@+id/tri_button"
-                android:layout_weight="0.25"
+                android:layout_margin="20dp"
                 />
             <Button
                 android:layout_width="40dp"
-                android:layout_height="62dp"
+                android:layout_height="40dp"
                 android:background="@drawable/sq"
                 android:id="@+id/sq_button"
-                android:layout_weight="0.25"
-                android:layout_margin="10dp"
+                android:layout_margin="20dp"
                 />
             <Button
                 android:layout_width="40dp"
-                android:layout_height="62dp"
+                android:layout_height="40dp"
                 android:background="@drawable/x"
                 android:id="@+id/x_button"
-                android:layout_weight="0.25"
-                android:layout_marginRight="10dp"
+                android:layout_margin="20dp"
                 />
             <Button
                 android:layout_width="40dp"
-                android:layout_height="62dp"
+                android:layout_height="40dp"
                 android:background="@drawable/o"
                 android:id="@+id/o_button"
-                android:layout_weight="0.25"
+                android:layout_margin="20dp"
                 />
 
         </LinearLayout>
