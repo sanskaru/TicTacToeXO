@@ -10,5 +10,11 @@
     </style>
     <style name="NumberPickerText">
         <item name="android:textSize">22sp</item>
+        <item name="colorControlNormal">@android:color/transparent</item>
+    </style>
+    <style name="NumberPickerTextDark">
+        <item name="android:textSize">22sp</item>
+        <item name="colorControlNormal">@android:color/transparent</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
     </style>
 </resources>
