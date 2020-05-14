@@ -19,35 +19,7 @@ public class SinglePlayerMode extends AppCompatActivity {
     int playerState = 0, whoIsPlaying=0; // at present at two player local mode. 0 is x and 1 is o.
     int[] boardState = {-1, -1, -1, -1, -1, -1, -1, -1, -1}; // -1 means unplayed, else stores playerState, denoting which player tapped which cell
     int playCounter = 0, winnerwinner = 0, computerState=0; // denotes number of tapped or played grids, winnerwinner denotes somebody has won
-    public int minimax(int[] boardState, int depth, int player) {
-        int minScore=-999, maxScore=-999,score;
-        if(winnerwinner==playerState) return -1;
-        else if(winnerwinner==computerState) return 1;
-        for(int i=0;i<boardState.length;i++)
-        {
-            if(boardState[i]==-1)
-            {
-                if(whoIsPlaying==computerState)
-                {
-                    View counter = new View(SinglePlayerMode.this);
-                    View view = counter.findViewWithTag(boardState[i]);
-                    drop_in(view);
-                    score=minimax(boardState, depth+1, playerState);
-                    maxScore=Math.max(score, maxScore);
-                }
-                else if(whoIsPlaying==playerState)
-                {
-                    View view = new View(SinglePlayerMode.this);
-                    view = view.findViewWithTag(boardState[i]);
-                    drop_in(view);
-                    score=minimax(boardState, depth+1, computerState);
-                    minScore=Math.min(score, minScore);
-                }
-            }
-        }
-        if(whoIsPlaying==computerState) return maxScore;
-        else return minScore;
-    }
+
 
     public void myDialog(String title, String msg) // method to call dialog box
     {
@@ -69,53 +41,50 @@ public class SinglePlayerMode extends AppCompatActivity {
         //all possible winning positions below
         if (boardState[0] == boardState[1] && boardState[1] == boardState[2] && boardState[0] != -1) {
             Log.i("Info", "Player " + boardState[0] + " has won.");
+
             winnerwinner = boardState[0];
+            myDialog("Congratulations","Player "+winnerwinner+" has won.");
         } else if (boardState[0] == boardState[3] && boardState[3] == boardState[6] && boardState[0] != -1) {
             Log.i("Info", "Player " + boardState[0] + " has won.");
             winnerwinner = boardState[0];
+            myDialog("Congratulations","Player "+winnerwinner+" has won.");
         } else if (boardState[0] == boardState[4] && boardState[4] == boardState[8] && boardState[0] != -1) {
             Log.i("Info", "Player " + boardState[0] + " has won.");
 
             winnerwinner = boardState[0];
+            myDialog("Congratulations","Player "+winnerwinner+" has won.");
         } else if (boardState[1] == boardState[4] && boardState[4] == boardState[7] && boardState[1] != -1) {
             Log.i("Info", "Player " + boardState[1] + " has won.");
 
             winnerwinner = boardState[1];
+            myDialog("Congratulations","Player "+winnerwinner+" has won.");
         } else if (boardState[2] == boardState[5] && boardState[5] == boardState[8] && boardState[2] != -1) {
             Log.i("Info", "Player " + boardState[2] + " has won.");
 
             winnerwinner = boardState[2];
+            myDialog("Congratulations","Player "+winnerwinner+" has won.");
         } else if (boardState[2] == boardState[4] && boardState[4] == boardState[6] && boardState[2] != -1) {
             Log.i("Info", "Player " + boardState[2] + " has won.");
 
             winnerwinner = boardState[2];
+            myDialog("Congratulations","Player "+winnerwinner+" has won.");
         } else if (boardState[3] == boardState[4] && boardState[4] == boardState[5] && boardState[3] != -1) {
             Log.i("Info", "Player " + boardState[3] + " has won.");
 
             winnerwinner = boardState[3];
+            myDialog("Congratulations","Player "+winnerwinner+" has won.");
         } else if (boardState[6] == boardState[7] && boardState[7] == boardState[8] && boardState[6] != -1) {
             Log.i("Info", "Player " + boardState[6] + " has won.");
 
             winnerwinner = boardState[6];
+            myDialog("Congratulations","Player "+winnerwinner+" has won.");
         }
         if (playCounter == 9 && winnerwinner == 0) // if all grids have been tapped and nobody won, i.e. it's a draw or a tie
         {
             Log.i("Info", "Board full.");
+            myDialog("It's a tie!","The board is full. Please play again.");
         }
         return winnerwinner;
-    }
-
-    public void computerLogicHard() {
-        int winnerstate = -1, newWinner;
-        int[] copyBoardState = boardState;
-        for (int i = 0; i < 9; i++) {
-            if (copyBoardState[i] == -1) {
-                copyBoardState[i] = playerState;
-                newWinner = minimax(copyBoardState, 0, whoIsPlaying);
-                if (newWinner > winnerstate) winnerstate = newWinner;
-            }
-        }
-        boardState=copyBoardState;
     }
 
     public void drop_in(View view) // method invoked on tapping any grid cell
@@ -137,7 +106,6 @@ public class SinglePlayerMode extends AppCompatActivity {
             boardState[cellState] = whoIsPlaying; // changing grid number to record which player tapped so that nobody can change on tapping again
         }
         endStateChecker(boardState);
-       if (whoIsPlaying==computerState) computerLogicHard();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
