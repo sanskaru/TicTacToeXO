@@ -21,7 +21,7 @@ You should either have:
 1. [Android Studio](https://developer.android.com/studio?hl=en) installed on your system, or
 2. An Android Device running Android version 5.0 or above.
 
-### Intallation
+### Installation
 
 * Method 1: Use this repo itself by clicking [here.](https://github.com/sanskaru/TicTacToeXO/archive/master.zip)
 
