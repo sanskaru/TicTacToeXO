@@ -8,19 +8,52 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import java.util.Random;
+
 public class SinglePlayerMode extends AppCompatActivity {
-    int playerState = 0, whoIsPlaying=0; // at present at two player local mode. 0 is x and 1 is o.
+    int playerState = 0, human, ai; // at present at two player local mode. 0 is x and 1 is o.
     int[] boardState = {-1, -1, -1, -1, -1, -1, -1, -1, -1}; // -1 means unplayed, else stores playerState, denoting which player tapped which cell
-    int playCounter = 0, winnerwinner = 0, computerState=0; // denotes number of tapped or played grids, winnerwinner denotes somebody has won
-
-
+    int playCounter = 0, winnerwinner = 0; // denotes number of tapped or played grids, winnerwinner denotes somebody has won, if winnerwinner=-1 then tie
+    View myview;
+    Boolean isEasy;
+    void easyMode() {
+        Random random = new Random();
+        int i = random.nextInt(9);
+        while (boardState[i] != -1) {
+            i = random.nextInt(9);
+        }
+        if (boardState[i] == -1) {
+            ViewGroup group = (ViewGroup) findViewById(R.id.gridLayout);
+            myview = (View) group.findViewWithTag(String.valueOf(i));
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    drop_in(myview);
+                }
+            }, 1000);
+        }
+    }
+    void hardMode()
+    {
+        Toast.makeText(SinglePlayerMode.this, "Coming Soon", Toast.LENGTH_LONG).show();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                finish();
+            }
+        }, 2000);
+    }
     public void myDialog(String title, String msg) // method to call dialog box
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(SinglePlayerMode.this);
@@ -83,6 +116,7 @@ public class SinglePlayerMode extends AppCompatActivity {
         {
             Log.i("Info", "Board full.");
             myDialog("It's a tie!","The board is full. Please play again.");
+            winnerwinner=-1;
         }
         return winnerwinner;
     }
@@ -93,26 +127,34 @@ public class SinglePlayerMode extends AppCompatActivity {
         int cellState = Integer.parseInt(counter.getTag().toString()); // getting the associated tags or basically cell number
         if (boardState[cellState] == -1) {
             counter.setTranslationY(-1000f);
-            if (whoIsPlaying == 0) {
-                whoIsPlaying = 1;
+            if (playerState == 0) {
+                playerState = 1;
                 counter.setImageResource(R.drawable.x);
                 playCounter++; // updating number of played grids
             } else {
-                whoIsPlaying = 0;
+                playerState = 0;
                 counter.setImageResource(R.drawable.o);
                 playCounter++;
             }
             counter.animate().translationYBy(1000f).rotation(360f).setDuration(300); // drop-in animation
-            boardState[cellState] = whoIsPlaying; // changing grid number to record which player tapped so that nobody can change on tapping again
+            boardState[cellState] = playerState;
+            // changing grid number to record which player tapped so that nobody can change on tapping again
+
         }
         endStateChecker(boardState);
+        if(endStateChecker(boardState)==0) {
+            if (playerState == ai) {
+                if(isEasy) easyMode();
+                else hardMode();
+            }
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_single_player_mode);
+        setContentView(R.layout.activity_main);
         AlertDialog.Builder builder = new AlertDialog.Builder(SinglePlayerMode.this);
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
@@ -120,10 +162,12 @@ public class SinglePlayerMode extends AppCompatActivity {
                 switch (which) {
                     case DialogInterface.BUTTON_POSITIVE: {
                         Toast.makeText(SinglePlayerMode.this, "Hard Mode Selected", Toast.LENGTH_SHORT).show();
+                        isEasy=false;
                         break;
                     }
                     case DialogInterface.BUTTON_NEGATIVE: {
                         Toast.makeText(SinglePlayerMode.this, "Easy Mode Selected", Toast.LENGTH_SHORT).show();
+                        isEasy=true;
                         break;
                     }
                 }
@@ -143,14 +187,14 @@ public class SinglePlayerMode extends AppCompatActivity {
                 switch (i) {
                     case DialogInterface.BUTTON_POSITIVE: {
                         playerState = 1;
-                        whoIsPlaying = 1;
-                        computerState = 0;
+                        human=playerState;
+                        ai=0;
                         break;
                     }
                     case DialogInterface.BUTTON_NEGATIVE: {
                         playerState = 0;
-                        whoIsPlaying = 0;
-                        computerState = 1;
+                        human=playerState;
+                        ai=1;
                         break;
                     }
                 }

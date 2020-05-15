@@ -8,8 +8,8 @@ android {
         applicationId "com.s090.tictactoexo"
         minSdkVersion 16
         targetSdkVersion 29
-        versionCode 5
-        versionName "1.0.4_alpha"
+        versionCode 6
+        versionName "0.1.0_beta"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
