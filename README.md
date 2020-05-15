@@ -4,8 +4,9 @@ Just another TicTacToe app, by just another noob wannabe developer.
 
 ## Changelog
 
-* Version 1.0.4_alpha(April 28th, 2020): Four-player Mode added.
-* Version 1.0.3_alpha(April 26th, 2020): Single Player mode coming soon. Redesigned UI, various bug fixes.
+* Version 0.1.0_beta (May 15th, 2020): Little UI changes, Single Player Mode is now live, currently available only in easy mode. Hard mode is in progress. Dark Theme coming soon.
+* Version 1.0.4_alpha (April 28th, 2020): Four-player Mode added.
+* Version 1.0.3_alpha (April 26th, 2020): Single Player mode coming soon. Redesigned UI, various bug fixes.
 * Version 1.0.2_alpha (April 20th, 2020): Single player vs Computer mode is now in progress. Three Player local mode is now live.
 
 * Version 1.0.1_alpha (April 17th, 2020): Menu added, new game mode options added. The game modes are in progress as of now. Updated graphics and icon, courtesy [Suraj Singh](mailto:marvarik007@gmail.com?subject=[GitHub]%20TicTacToeXO). Bug fixed: Nothing happening on game draw.
