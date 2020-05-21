@@ -47,13 +47,22 @@ public class SinglePlayerMode extends AppCompatActivity {
     }
     void hardMode()
     {
-        Toast.makeText(SinglePlayerMode.this, "Coming Soon", Toast.LENGTH_LONG).show();
-        new Handler().postDelayed(new Runnable() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(SinglePlayerMode.this);
+        builder.setTitle("Info").setMessage("Thanks for sticking around, but at present the support for this mode has stopped.").setCancelable(true);
+        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
-            public void run() {
+            public void onDismiss(DialogInterface dialogInterface) {
                 finish();
             }
-        }, 2000);
+        }).setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialogInterface) {
+                finish();
+            }
+        });
+        // create and show the alert dialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
     public void myDialog(String title, String msg) // method to call dialog box
     {
@@ -63,7 +72,6 @@ public class SinglePlayerMode extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 finish();
-                startActivity(getIntent());
             }
         });
         // create and show the alert dialog
