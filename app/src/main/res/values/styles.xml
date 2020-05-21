@@ -1,12 +1,13 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-
+        <item name="android:background">#202020</item>
+        <item name="colorAccent">#000000</item>
+        <item name="android:textColorPrimary">#ffffff</item>
+        <item name="android:textColorLink">#f5f5f5</item>
+        <item name="colorControlNormal">@android:color/transparent</item>
     </style>
     <style name="NumberPickerText">
         <item name="android:textSize">22sp</item>
@@ -16,5 +17,12 @@
         <item name="android:textSize">22sp</item>
         <item name="colorControlNormal">@android:color/transparent</item>
         <item name="android:textColorPrimary">@android:color/white</item>
+    </style>
+    <style name="themeLight" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textColorPrimary">@android:color/black</item>
+        <item name="android:background">#ffffff</item>
+        <item name="android:textColorLink">#0f0f0f</item>
+        <item name="colorControlNormal">@android:color/transparent</item>
+        <item name="colorAccent">#f0f0f0</item>
     </style>
 </resources>

@@ -7,11 +7,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -21,6 +23,7 @@ public class ThreePlayerLocal extends AppCompatActivity {
     int playerState=0; // at present at three player local mode. 0 is sq and 1 is x and 2 is o
     int[] boardState={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1}; // -1 means unplayed, else stores playerState, denoting which player tapped which cell
     int playCounter = 0, winnerwinner = 0; // denotes number of tapped or played grids, winnerwinner denotes somebody has won
+    Boolean b;
     public void myDialog(String title, String msg) // method to call dialog box
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(ThreePlayerLocal.this);
@@ -35,6 +38,9 @@ public class ThreePlayerLocal extends AppCompatActivity {
         // create and show the alert dialog
         AlertDialog dialog = builder.create();
         dialog.show();
+        Button button=dialog.getButton(DialogInterface.BUTTON_POSITIVE);
+        if(b) button.setTextColor(Color.WHITE);
+        else button.setTextColor(Color.BLACK);
     }
     public void drop_in(View view) // method invoked on tapping any grid cell
     {
@@ -138,63 +144,54 @@ public class ThreePlayerLocal extends AppCompatActivity {
         @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+            Intent intent=getIntent();
+            b=intent.getBooleanExtra("Dark Mode", true);
+            System.out.println("Bool "+b);
+            themeUtils.onActivityCreateSetConditionTheme(this, b);
         setContentView(R.layout.activity_three_player_local);
         final ImageView playaaah = (ImageView) findViewById(R.id.playaaah);
-        AlertDialog.Builder initDialogBuilder=new AlertDialog.Builder(ThreePlayerLocal.this);
-        DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                switch (i)
-                {
-                    case DialogInterface.BUTTON_POSITIVE:
+            LayoutInflater layoutInflater = LayoutInflater.from(this); // setting custom dialog view
+            View custDialog = layoutInflater.inflate(R.layout.my_alert_2, null); // making it a view
+            AlertDialog.Builder initDialogBuilder=new AlertDialog.Builder(ThreePlayerLocal.this);
+            initDialogBuilder
+                    .setTitle("Select your counter")
+                    .setMessage("Please select your counter.");
+            final AlertDialog initDialog = initDialogBuilder.create();
+            initDialog.setView(custDialog); // setting view as our dialog view
+            View.OnClickListener listener = new View.OnClickListener() { // custom onClickListener for customised buttons
+                @Override
+                public void onClick(View view) {
+                    int i = view.getId();
+                    switch (i)
+                    {
+                        case R.id.o_button:
                         {
                             playerState=1;
                             playaaah.setImageResource(R.drawable.o);
+                            initDialog.dismiss(); // since this won't dismiss by itself
                             break;
                         }
-                        case DialogInterface.BUTTON_NEGATIVE:
+                        case R.id.x_button:
                         {
                             playerState=0;
                             playaaah.setImageResource(R.drawable.x);
+                            initDialog.dismiss();
                             break;
                         }
-                        case DialogInterface.BUTTON_NEUTRAL:
+                        case R.id.sq_button:
                         {
                             playerState=2;
                             playaaah.setImageResource(R.drawable.sq);
+                            initDialog.dismiss();
                             break;
                         }
                     }
                 }
             };
-            initDialogBuilder
-                    .setTitle("Select your counter")
-                    .setNegativeButtonIcon(getDrawable(R.drawable.x))
-                    .setPositiveButton("", listener)
-                    .setPositiveButtonIcon(getDrawable(R.drawable.o))
-                    .setNegativeButton("", listener)
-                    .setNeutralButton("      ", listener)
-                    .setMessage("Please select your counter.");
-            AlertDialog initDialog = initDialogBuilder.create();
+            custDialog.findViewById(R.id.sq_button).setOnClickListener(listener);
+            custDialog.findViewById(R.id.x_button).setOnClickListener(listener);
+            custDialog.findViewById(R.id.o_button).setOnClickListener(listener);
             initDialog.show();
-            Button neutralButton = initDialog.getButton(DialogInterface.BUTTON_NEUTRAL);
-            Drawable drawable = getDrawable(R.drawable.sq);
-            // set the bounds to place the drawable a bit right
-            drawable.setBounds((int) (drawable.getIntrinsicWidth() * 0.05),
-                    0, (int) (drawable.getIntrinsicWidth() * 0.25),
-                    (int) (drawable.getIntrinsicHeight() * 0.2));
-            neutralButton.setCompoundDrawables(drawable, null, null, null);
-            Button positiveButton = initDialog.getButton(AlertDialog.BUTTON_POSITIVE);
-            Button negativeButton = initDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
-            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
-            layoutParams.weight = 10;
-            positiveButton.setLayoutParams(layoutParams);
-            negativeButton.setLayoutParams(layoutParams);
-            neutralButton.setLayoutParams(layoutParams);
-            getSupportActionBar().setTitle("Three-player local mode");
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setHomeButtonEnabled(true);
            initDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
 
                @Override
@@ -205,9 +202,5 @@ public class ThreePlayerLocal extends AppCompatActivity {
                 }
             });
         }
-    @Override
-    public boolean onSupportNavigateUp() { // the method to be called when the back button is pressed
-        onBackPressed();
-        return true;
-    }
+
 }

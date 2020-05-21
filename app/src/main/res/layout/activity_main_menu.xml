@@ -6,26 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".MainMenu">
 
-    <NumberPicker
-        android:id="@+id/menuSelector"
+    <com.s090.tictactoexo.menuClass
+        android:id="@+id/choices"
+        max="3"
+        min="0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:descendantFocusability="blocksDescendants"
+        android:onClick="clicker"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:theme="@style/NumberPickerText"
-        android:descendantFocusability="blocksDescendants" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="clicker"
-        android:text="Select"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menuSelector" />
     <TextView
         android:id="@+id/devInfo"
         android:layout_width="wrap_content"
@@ -48,5 +41,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/about_icon" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="setDarkMode"
+        android:text="Dark Mode"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

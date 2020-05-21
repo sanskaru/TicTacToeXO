@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -26,7 +27,7 @@ public class SinglePlayerMode extends AppCompatActivity {
     int[] boardState = {-1, -1, -1, -1, -1, -1, -1, -1, -1}; // -1 means unplayed, else stores playerState, denoting which player tapped which cell
     int playCounter = 0, winnerwinner = 0; // denotes number of tapped or played grids, winnerwinner denotes somebody has won, if winnerwinner=-1 then tie
     View myview;
-    Boolean isEasy;
+    Boolean isEasy, b;
     void easyMode() {
         Random random = new Random();
         int i = random.nextInt(9);
@@ -68,6 +69,9 @@ public class SinglePlayerMode extends AppCompatActivity {
         // create and show the alert dialog
         AlertDialog dialog = builder.create();
         dialog.show();
+        Button button=dialog.getButton(DialogInterface.BUTTON_POSITIVE);
+        if (b) button.setTextColor(Color.WHITE);
+        else button.setTextColor(Color.BLACK);
     }
 
     public int endStateChecker(int[] boardState) {
@@ -154,6 +158,10 @@ public class SinglePlayerMode extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent=getIntent();
+        b=intent.getBooleanExtra("Dark Mode", true);
+        System.out.println("Bool "+b);
+        themeUtils.onActivityCreateSetConditionTheme(this, b);
         setContentView(R.layout.activity_main);
         AlertDialog.Builder builder = new AlertDialog.Builder(SinglePlayerMode.this);
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
@@ -180,6 +188,17 @@ public class SinglePlayerMode extends AppCompatActivity {
                 .setNegativeButton("Easy", dialogClickListener);
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+        Button Easy=alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+        Button Hard=alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+        if (b) {
+            Easy.setTextColor(Color.WHITE);
+            Hard.setTextColor(Color.WHITE);
+        }
+        else
+        {
+            Easy.setTextColor(Color.BLACK);
+            Hard.setTextColor(Color.BLACK);
+        }
         AlertDialog.Builder initDialogBuilder = new AlertDialog.Builder(SinglePlayerMode.this);
         DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
             @Override
@@ -232,15 +251,5 @@ public class SinglePlayerMode extends AppCompatActivity {
                 finish();
             }
         });
-        getSupportActionBar().setTitle("Single Player mode");
-        getSupportActionBar().setDisplayShowHomeEnabled(true); // enabling back button function
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true); // enabling back functionality
-        getSupportActionBar().setHomeButtonEnabled(true);
-    }
-
-    @Override
-    public boolean onSupportNavigateUp() { // the method to be called when the back button is pressed
-        onBackPressed();
-        return true;
     }
 }

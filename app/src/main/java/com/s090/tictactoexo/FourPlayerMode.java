@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ public class FourPlayerMode extends AppCompatActivity {
     int playerState=0; // at present at three player local mode. 0 is sq and 1 is x and 2 is o
     int[] boardState={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1}; // -1 means unplayed, else stores playerState, denoting which player tapped which cell
     int playCounter = 0, winnerwinner = 0; // denotes number of tapped or played grids, winnerwinner denotes somebody has won
+    Boolean b;
     public void myDialog(String title, String msg) // method to call dialog box
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(FourPlayerMode.this);
@@ -35,6 +37,9 @@ public class FourPlayerMode extends AppCompatActivity {
         // create and show the alert dialog
         AlertDialog dialog = builder.create();
         dialog.show();
+        Button button=dialog.getButton(DialogInterface.BUTTON_POSITIVE);
+        if(b) button.setTextColor(Color.WHITE);
+        else button.setTextColor(Color.BLACK);
     }
     public void drop_in(View view) // method invoked on tapping any grid cell
     {
@@ -146,6 +151,10 @@ public class FourPlayerMode extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent=getIntent();
+        b=intent.getBooleanExtra("Dark Mode", true);
+        System.out.println("Bool "+b);
+        themeUtils.onActivityCreateSetConditionTheme(this, b);
         setContentView(R.layout.activity_three_player_local);
         final ImageView playaaah = (ImageView) findViewById(R.id.playaaah);
         LayoutInflater layoutInflater = LayoutInflater.from(this); // setting custom dialog view
@@ -198,10 +207,7 @@ public class FourPlayerMode extends AppCompatActivity {
         custDialog.findViewById(R.id.x_button).setOnClickListener(listener);
         custDialog.findViewById(R.id.o_button).setOnClickListener(listener);
         initDialog.show();
-        getSupportActionBar().setTitle("Four-player local mode");
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
+
         initDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
 
             @Override
@@ -211,10 +217,5 @@ public class FourPlayerMode extends AppCompatActivity {
                 finish();
             }
         });
-    }
-    @Override
-    public boolean onSupportNavigateUp() { // the method to be called when the back button is pressed
-        onBackPressed();
-        return true;
     }
 }

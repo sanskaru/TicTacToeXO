@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -20,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     int playerState=0; // at present at two player local mode. 1 is x and 0 is o.
     int[] boardState={-1,-1,-1,-1,-1,-1,-1,-1,-1}; // -1 means unplayed, else stores playerState, denoting which player tapped which cell
     int playCounter = 0, winnerwinner=0; // denotes number of tapped or played grids, winnerwinner denotes somebody has won
-
+    Boolean b;
     public void myDialog(String title, String msg) // method to call dialog box
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
@@ -35,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
         // create and show the alert dialog
         AlertDialog dialog = builder.create();
         dialog.show();
+        Button button=dialog.getButton(DialogInterface.BUTTON_POSITIVE);
+        if(b) button.setTextColor(Color.WHITE);
+        else button.setTextColor(Color.BLACK);
     }
     public void drop_in(View view) // method invoked on tapping any grid cell
     {
@@ -116,7 +120,12 @@ public class MainActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+        Intent intent=getIntent();
+        b=intent.getBooleanExtra("Dark Mode", true);
+        System.out.println("Bool "+b);
+        themeUtils.onActivityCreateSetConditionTheme(this, b);
         setContentView(R.layout.activity_main);
         final ImageView playaaah = (ImageView) findViewById(R.id.playaaah);
         AlertDialog.Builder initDialogBuilder=new AlertDialog.Builder(MainActivity.this);
@@ -155,10 +164,6 @@ public class MainActivity extends AppCompatActivity {
         layoutParams.weight = 1;
         btnPositive.setLayoutParams(layoutParams);
         btnNegative.setLayoutParams(layoutParams);
-        getSupportActionBar().setTitle("Two-Player local mode");
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
         initDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
@@ -169,9 +174,5 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-    @Override
-    public boolean onSupportNavigateUp() { // the method to be called when the back button is pressed
-        onBackPressed();
-        return true;
-    }
+
 }
