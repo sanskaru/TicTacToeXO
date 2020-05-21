@@ -163,6 +163,8 @@ public class SinglePlayerMode extends AppCompatActivity {
         System.out.println("Bool "+b);
         themeUtils.onActivityCreateSetConditionTheme(this, b);
         setContentView(R.layout.activity_main);
+        androidx.gridlayout.widget.GridLayout gridLayout=(androidx.gridlayout.widget.GridLayout) findViewById(R.id.gridLayout);
+        if(b) gridLayout.setBackgroundResource(R.drawable.board3dark);
         AlertDialog.Builder builder = new AlertDialog.Builder(SinglePlayerMode.this);
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
             @Override

@@ -15,6 +15,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -156,6 +157,7 @@ public class FourPlayerMode extends AppCompatActivity {
         System.out.println("Bool "+b);
         themeUtils.onActivityCreateSetConditionTheme(this, b);
         setContentView(R.layout.activity_three_player_local);
+
         final ImageView playaaah = (ImageView) findViewById(R.id.playaaah);
         LayoutInflater layoutInflater = LayoutInflater.from(this); // setting custom dialog view
         View custDialog = layoutInflater.inflate(R.layout.my_alert, null); // making it a view
@@ -217,5 +219,7 @@ public class FourPlayerMode extends AppCompatActivity {
                 finish();
             }
         });
+        androidx.gridlayout.widget.GridLayout gridLayout=(androidx.gridlayout.widget.GridLayout) findViewById(R.id.gridLayout);
+        if(b) gridLayout.setBackground(getDrawable(R.drawable.board4dark));
     }
 }

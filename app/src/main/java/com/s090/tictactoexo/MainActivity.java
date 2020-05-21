@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -127,6 +128,8 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("Bool "+b);
         themeUtils.onActivityCreateSetConditionTheme(this, b);
         setContentView(R.layout.activity_main);
+        androidx.gridlayout.widget.GridLayout gridLayout=(androidx.gridlayout.widget.GridLayout) findViewById(R.id.gridLayout);
+        if(b) gridLayout.setBackgroundResource(R.drawable.board3dark);
         final ImageView playaaah = (ImageView) findViewById(R.id.playaaah);
         AlertDialog.Builder initDialogBuilder=new AlertDialog.Builder(MainActivity.this);
         DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {

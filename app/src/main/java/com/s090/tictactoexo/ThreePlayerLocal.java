@@ -16,6 +16,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -149,6 +150,8 @@ public class ThreePlayerLocal extends AppCompatActivity {
             System.out.println("Bool "+b);
             themeUtils.onActivityCreateSetConditionTheme(this, b);
         setContentView(R.layout.activity_three_player_local);
+            androidx.gridlayout.widget.GridLayout gridLayout=(androidx.gridlayout.widget.GridLayout) findViewById(R.id.gridLayout);
+            if(b) gridLayout.setBackgroundResource(R.drawable.board4dark);
         final ImageView playaaah = (ImageView) findViewById(R.id.playaaah);
             LayoutInflater layoutInflater = LayoutInflater.from(this); // setting custom dialog view
             View custDialog = layoutInflater.inflate(R.layout.my_alert_2, null); // making it a view
