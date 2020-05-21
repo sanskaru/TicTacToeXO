@@ -1,6 +1,6 @@
 # TicTacToeXO
 
-Just another TicTacToe app, by just another noob wannabe developer.
+A take on the classic "Naughts-and-Crosses" game, with different gameplay modes, modern UI and graphics, and a dark theme.
 
 ## Changelog
 
