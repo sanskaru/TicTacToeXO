@@ -169,12 +169,12 @@ public class SinglePlayerMode extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 switch (which) {
                     case DialogInterface.BUTTON_POSITIVE: {
-                        Toast.makeText(SinglePlayerMode.this, "Hard Mode Selected", Toast.LENGTH_SHORT).show();
+
                         isEasy=false;
                         break;
                     }
                     case DialogInterface.BUTTON_NEGATIVE: {
-                        Toast.makeText(SinglePlayerMode.this, "Easy Mode Selected", Toast.LENGTH_SHORT).show();
+
                         isEasy=true;
                         break;
                     }
