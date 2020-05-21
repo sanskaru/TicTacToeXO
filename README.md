@@ -2,6 +2,13 @@
 
 A take on the classic "Naughts-and-Crosses" game, with different gameplay modes, modern UI and graphics, and a dark theme.
 
+## Features
+
+* Single Player Mode: For the lone wolves out there!
+* 2-player local Mode: The traditional way.
+* 3 and 4-player local Mode: So that your gang is never bored.
+* Dark Theme: Easy on the eyes, power efficient, looks cool. Also, changes as per systemwide theme if not already set by the user. Compatible with devices running Android versions below 9 as well.
+
 ## Changelog
 
 * Version 0.1.0_stable (May 21st, 2020): Dark theme is now live.
