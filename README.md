@@ -4,6 +4,7 @@ Just another TicTacToe app, by just another noob wannabe developer.
 
 ## Changelog
 
+* Version 0.1.0_stable (May 21st, 2020): Dark theme is now live.
 * Version 0.1.0_beta (May 15th, 2020): Little UI changes, Single Player Mode is now live, currently available only in easy mode. Hard mode is in progress. Dark Theme coming soon.
 * Version 1.0.4_alpha (April 28th, 2020): Four-player Mode added.
 * Version 1.0.3_alpha (April 26th, 2020): Single Player mode coming soon. Redesigned UI, various bug fixes.
