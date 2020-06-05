@@ -66,10 +66,10 @@ I don't know about Git bash but it is supposed to import the project directly on
 ## Contributors
 
 * [Suraj Singh](mailto:marvarik007@gmail.com) : Graphics
-* [Somrita Mukherjee](github.com/SomritaM) : Testing and Deployment
+* [Somrita Mukherjee](https://github.com/SomritaM) : Testing and Deployment
 * [Shashi Shaw](mailto:shashikshaw512@gmail.com) : Testing and Deployment
-* [Rounak Saha](github.com/kevinknight09) : Testing and Deployment
-* [Supriyo Sarkar](spantheslayer.github.io) : Testing and Deployment.
+* [Rounak Saha](https://github.com/kevinknight09) : Testing and Deployment
+* [Supriyo Sarkar](https://spantheslayer.github.io) : Testing and Deployment.
 * The whole of Herbivores fam, BAKM fam and OT fam: For their constant support.
 
 
