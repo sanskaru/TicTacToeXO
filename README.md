@@ -2,6 +2,8 @@
 
 A take on the classic "Naughts-and-Crosses" game, with different gameplay modes, modern UI and graphics, and a dark theme.
 
+![Image of TicTacXO](https://github.com/sanskaru/TicTacToeXO/blob/master/InShot_20200609_132207887.jpg)
+
 ## Features
 
 * Single Player Mode: For the lone wolves out there!
